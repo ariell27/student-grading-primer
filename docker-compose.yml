@@ -9,6 +9,7 @@ services:
     # Data inside the container is lost on restart unless you persist it with a volume.
     ports:
       - "5432:5432"
+
     volumes:
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
       - db_data:/var/lib/postgresql/data
@@ -35,6 +36,7 @@ services:
     depends_on:
       - backend
 
+
   automark:
     build: ./automark
     depends_on:
@@ -42,5 +44,7 @@ services:
       - db
     profiles:
       - debug
+
 volumes:
   db_data:
+

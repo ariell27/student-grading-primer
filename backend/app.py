@@ -17,6 +17,7 @@ def get_students():
     Route to fetch all students from the database
     return: Array of student objects
     """
+
     try:
         students = db.get_all_students()
         return jsonify(students), 200
@@ -62,6 +63,7 @@ def update_student(student_id):
     param mark: The mark the student received (from request body)
     return: The updated student if successful
     """
+
     try:
         data = request.json
 
@@ -98,12 +100,14 @@ def delete_student(student_id):
         return jsonify({"error": "Failed to delete student"}), 404
 
 
+
 @app.route("/stats")
 def get_stats():
     """
     Route to show the stats of all student marks 
     return: An object with the stats (count, average, min, max)
     """
+
     try:
         students = db.get_all_students()
 
@@ -126,6 +130,7 @@ def get_stats():
 
     except Exception:
         return jsonify({"error": "Failed to calculate stats"}), 404
+
 
 
 @app.route("/")
