@@ -1,24 +1,25 @@
-import { useState } from 'react'
-import S from './styles.module.css';
+import { useState } from "react";
+import S from "./styles.module.css";
 
-const emptyForm = { name: '', course: '', mark: '' }
+const emptyForm = { name: "", course: "", mark: "" };
 
 export default function StudentForm({ onSubmit }) {
-  const [form, setForm] = useState(emptyForm)
+  const [form, setForm] = useState(emptyForm);
 
   function handleChange(e) {
-    const { name, value } = e.target
-    setForm((prev) => ({ ...prev, [name]: value }))
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
   }
 
   function handleSubmit(e) {
-    e.preventDefault()
-    const name = form.name.trim()
-    const course = form.course.trim()
-    if (!name || !course) return
-    const mark = form.mark === '' ? 0 : Math.min(100, Math.max(0, Number(form.mark) || 0))
-    onSubmit({ name, course, mark })
-    setForm(emptyForm)
+    e.preventDefault();
+    const name = form.name.trim();
+    const course = form.course.trim();
+    if (!name || !course) return;
+    const mark =
+      form.mark === "" ? 0 : Math.min(100, Math.max(0, Number(form.mark) || 0));
+    onSubmit({ name, course, mark });
+    setForm(emptyForm);
   }
 
   return (
@@ -64,5 +65,5 @@ export default function StudentForm({ onSubmit }) {
         Add student
       </button>
     </form>
-  )
+  );
 }
