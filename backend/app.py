@@ -46,6 +46,9 @@ def create_student():
         if not name or not course:
             return jsonify({"error": "Missing name or course"}), 404
 
+        if isinstance(name, str) and name.strip().isdigit():
+            return jsonify({"error": "Name cannot be a number"}), 404
+
         student = db.insert_student(name, course, mark)
         return jsonify(student), 200
 
@@ -70,6 +73,9 @@ def update_student(student_id):
         name = data.get("name")
         course = data.get("course")
         mark = data.get("mark")
+
+        if name is not None and isinstance(name, str) and name.strip() and name.strip().isdigit():
+            return jsonify({"error": "Name cannot be a number"}), 404
 
         updated = db.update_student(student_id, name, course, mark)
 

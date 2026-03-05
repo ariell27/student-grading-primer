@@ -1,29 +1,34 @@
-import { useState, useEffect } from 'react'
-import S from './styles.module.css'
+import { useState, useEffect } from "react";
+import S from "./styles.module.css";
 
 export default function EditStudentModal({ student, onSave, onClose }) {
-  const [name, setName] = useState(student.name)
-  const [course, setCourse] = useState(student.course)
-  const [mark, setMark] = useState(String(student.mark))
+  const [name, setName] = useState(student.name);
+  const [course, setCourse] = useState(student.course);
+  const [mark, setMark] = useState(String(student.mark));
 
   useEffect(() => {
-    setName(student.name)
-    setCourse(student.course)
-    setMark(String(student.mark))
-  }, [student])
+    setName(student.name);
+    setCourse(student.course);
+    setMark(String(student.mark));
+  }, [student]);
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    const m = Math.min(100, Math.max(0, Number(mark) || 0))
-    onSave(student.id, { name: name.trim(), course: course.trim(), mark: m })
-  }
+    e.preventDefault();
+    const m = Math.min(100, Math.max(0, Number(mark) || 0));
+    onSave(student.id, { name: name.trim(), course: course.trim(), mark: m });
+  };
 
   return (
     <div className={S.modalBackdrop} onClick={onClose}>
       <div className={S.modal} onClick={(e) => e.stopPropagation()}>
         <div className={S.modalHeader}>
           <h2>Edit student</h2>
-          <button type="button" className="btn btn-icon" onClick={onClose} aria-label="Close">
+          <button
+            type="button"
+            className="btn btn-icon"
+            onClick={onClose}
+            aria-label="Close"
+          >
             x
           </button>
         </div>
@@ -70,5 +75,5 @@ export default function EditStudentModal({ student, onSave, onClose }) {
         </form>
       </div>
     </div>
-  )
+  );
 }
